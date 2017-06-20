@@ -124,15 +124,15 @@ func (c *MockHTTPClient) Do(req *http.Request) (*http.Response, error) {
 func FromString(s string) HTTPClient {
 	return &MockHTTPClient{
 		DoFn: func(req *http.Request) (*http.Response, error) {
-      // convert the given string to a ReadCloser (same as Response.Body)
-      body := ioutil.NopCloser(strings.NewReader(s))
+			// convert the given string to a ReadCloser (same as Response.Body)
+			body := ioutil.NopCloser(strings.NewReader(s))
 
-      // Just return a response with the given string
-      return &http.Response{
-        Body: body,
+			// Just return a response with the given string
+			return &http.Response{
+				Body: body,
 
-        // NOTE: We can mock other fields as well: StatusCode, cookies, headers, etc
-      }, nil
+				// Can mock other fields as well: StatusCode, etc
+			}, nil
 		},
 	}
 }
